@@ -1,0 +1,66 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card border-warning mb-3" style="max-width: 25rem;">
+      <div class="card-header text-center fs-4 fw-bold alert alert-warning">Calculadora de IMC</div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <input type="number" class="form-control" placeholder="Digite o seu peso (kg)" [(ngModel)]="peso" name="peso">
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" placeholder="Digite a sua altura (cm)" [(ngModel)]="altura" name="altura">
+          </div>
+          <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-outline-warning" (click)='birosca()'>Calcular</button>
+          </div>
+  
+          <div *ngIf="total !== 0" class="mt-3 text-center">
+            <p class="fs-5">Resultado:</p>
+            <label class="fs-3 fw-bold">{{ total | number:'1.2-2' }}</label>
+  
+            <p class="fs-5 mt-3">Classificação:</p>
+  
+            <!-- Abaixo do Peso -->
+            <div *ngIf="total < 17">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559962.png" alt="Imagem de baixo peso" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-danger">Seu IMC está abaixo do normal. Consulte um médico.</p>
+            </div>
+  
+            <!-- Peso Normal -->
+            <div *ngIf="total >= 18 && total <= 24">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559928.png" alt="Imagem de peso normal" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-success">Seu IMC está normal.</p>
+            </div>
+  
+            <!-- Sobrepeso -->
+            <div *ngIf="total >= 25 && total <= 29">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559940.png" alt="Imagem de sobrepeso" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-warning">Seu IMC está acima do normal. Consulte um médico.</p>
+            </div>
+  
+            <!-- Obesidade Grau I -->
+            <div *ngIf="total >= 30 && total <= 34">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559940.png" alt="Imagem de obesidade grau I" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-warning">Seu IMC está muito acima do normal indicando obesidade grau I. Consulte um médico.</p>
+            </div>
+  
+            <!-- Obesidade Grau II -->
+            <div *ngIf="total >= 35 && total <= 39">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559940.png" alt="Imagem de obesidade grau II" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-danger">Seu IMC está muito acima do normal indicando obesidade grau II. Consulte um médico.</p>
+            </div>
+  
+            <!-- Obesidade Grau III -->
+            <div *ngIf="total > 40">
+              <img src="https://cdn-icons-png.flaticon.com/512/5559/5559940.png" alt="Imagem de obesidade grau III" class="img-fluid mb-2" style="max-width: 80px;">
+              <p class="text-danger">Seu IMC está muito acima do normal indicando obesidade grau III. Consulte um médico.</p>
+            </div>
+          </div>
+  
+          <div *ngIf="total === 0" class="text-center mt-3 text-muted">
+            <p>Por favor, insira o peso e altura para calcular o IMC.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
